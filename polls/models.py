@@ -19,3 +19,6 @@ class Member(models.Model):
     campus = models.ForeignKey(Campus,on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
+class Dennis():
+    pass
+
