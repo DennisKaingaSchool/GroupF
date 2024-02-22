@@ -24,4 +24,19 @@ class Electoral_Position(models.Model):
 
 class Party(models.Model):
     party_name=models.CharField(max_length=100)
+class Election(models.Model):
+     election_date_created=models.DateField()
+     election_closing_date=models.DateField()
+     election_is_active=models.BooleanField()
+class Election_Member(models.Model):
+    election=models.ForeignKey(Election,on_delete=models.CASCADE)
+    election=models.ForeignKey(Member,on_delete=models.CASCADE)
+class Candidate_Election(models.Model):
+    candidate_election=models.ForeignKey(Election,on_delete=models.CASCADE)
+    candidate_election=models.ForeignKey(Member,on_delete=models.CASCADE)
+    candidate_election=models.ForeignKey(Electoral_Position,on_delete=models.CASCADE)
+    candidate_election=models.ForeignKey(Party,on_delete=models.CASCADE)
+    
+
+
         
