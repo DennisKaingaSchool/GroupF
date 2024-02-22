@@ -18,10 +18,3 @@ class Member(models.Model):
     member_address = models.CharField(max_length=100)
     campus = models.ForeignKey(Campus,on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-
-class Dennis():
-    pass
-class Ivy():
-    pass
-class Mary():
-    pass
