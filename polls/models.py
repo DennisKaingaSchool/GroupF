@@ -36,6 +36,7 @@ class Candidate_Election(models.Model):
     candidate_election=models.ForeignKey(Member,on_delete=models.CASCADE)
     candidate_election=models.ForeignKey(Electoral_Position,on_delete=models.CASCADE)
     candidate_election=models.ForeignKey(Party,on_delete=models.CASCADE)
+    candidate_election_member_number_votes=models.IntegerField()
     
 
 
