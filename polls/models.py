@@ -23,3 +23,5 @@ class Dennis():
     pass
 class Ivy():
     pass
+class Mary():
+    pass
