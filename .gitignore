@@ -1,1 +1,4 @@
 env/
+*/migrations
+*.sqlite*
+*/__pycache__
