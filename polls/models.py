@@ -18,3 +18,10 @@ class Member(models.Model):
     member_address = models.CharField(max_length=100)
     campus = models.ForeignKey(Campus,on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+class Electoral_Position(models.Model):
+    electoral_position_name=models.CharField(max_length=100)
+
+class Party(models.Model):
+    party_name=models.CharField(max_length=100)
+        
