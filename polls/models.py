@@ -22,3 +22,5 @@ class Member(models.Model):
 class Dennis():
     pass
 
+class Mary():
+    pass
