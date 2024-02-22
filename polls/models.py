@@ -21,4 +21,5 @@ class Member(models.Model):
 
 class Dennis():
     pass
-
+class Ivy():
+    pass
