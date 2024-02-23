@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse
-from polls.models import Member
+from polls.models import Member,Campus,Course
 # Create your views here.
 
 def home(request):
@@ -11,9 +11,18 @@ def home(request):
 
 
 def members(request):
-    return render(request,'polls/members/index.html')
+    context={
+        'members':Member.objects.all(),#SELECT * FROM members;,
+        'campuses':Campus.objects.all(),
+        'courses':Course.objects.all(),
+        "title":"Members"
+    }
+    return render(request,"polls/members/index.html",context=context)
+    
 
-
-def about(request):
-    return HttpResponse("this is about page")
-
+def elections(request):
+    context  ={
+        "title":"Elections"
+    }
+    return render(request,'polls/elections/index.html',context=context)
+   
