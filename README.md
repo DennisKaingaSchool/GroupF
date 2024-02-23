@@ -21,7 +21,7 @@ virtualenv <name of environment>
   ```
 - On Windows:
   ```bash
-  .\venv\Scripts\activate
+  env\Scripts\activate
   ```
 
 5. **Install Dependencies:**
