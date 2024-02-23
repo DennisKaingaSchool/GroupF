@@ -16,10 +16,10 @@ class Member(models.Model):
     member_date_of_birth = models.DateField()
     member_contact = models.CharField(max_length=15)
     member_address = models.CharField(max_length=100)
-    campus = models.ForeignKey(Campus,on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    member_campus = models.ForeignKey(Campus,on_delete=models.CASCADE)
+    member_course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
-class Electoral_Position(models.Model):
+class ElectoralPosition(models.Model):
     electoral_position_name=models.CharField(max_length=100)
 
 class Party(models.Model):
@@ -28,14 +28,14 @@ class Election(models.Model):
      election_date_created=models.DateField()
      election_closing_date=models.DateField()
      election_is_active=models.BooleanField()
-class Election_Member(models.Model):
-    election=models.ForeignKey(Election,on_delete=models.CASCADE)
-    election=models.ForeignKey(Member,on_delete=models.CASCADE)
-class Candidate_Election(models.Model):
-    candidate_election=models.ForeignKey(Election,on_delete=models.CASCADE)
-    candidate_election=models.ForeignKey(Member,on_delete=models.CASCADE)
-    candidate_election=models.ForeignKey(Electoral_Position,on_delete=models.CASCADE)
-    candidate_election=models.ForeignKey(Party,on_delete=models.CASCADE)
+class ElectionMember(models.Model):
+    election_member_election=models.ForeignKey(Election,on_delete=models.CASCADE)
+    election_member_member=models.ForeignKey(Member,on_delete=models.CASCADE)
+class CandidateElection(models.Model):
+    candidate_election_election=models.ForeignKey(Election,on_delete=models.CASCADE)
+    candidate_election_member=models.ForeignKey(Member,on_delete=models.CASCADE)
+    candidate_election_electoral_position=models.ForeignKey(ElectoralPosition,on_delete=models.CASCADE)
+    candidate_election_party=models.ForeignKey(Party,on_delete=models.CASCADE)
     candidate_election_member_number_votes=models.IntegerField()
     
 
