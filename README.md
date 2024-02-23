@@ -1,5 +1,7 @@
 # GroupF Django Project Workflow
 
+# ALWAYS PULL FROM MAIN BRANCH BEFORE YOU START :)
+
 ## Setting Up Virtual Environment
 
 1. **Clone the Repository:**
@@ -101,5 +103,5 @@ git branch
 4. **Push Changes to Remote Repository (if you created a new branch):**
 
 ```bash
-git push`
+git push
 ```
