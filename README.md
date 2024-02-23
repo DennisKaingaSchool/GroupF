@@ -9,18 +9,26 @@
 2. **Navigate to Project Directory:**
 3. **Create Virtual Environment:**
 
+```bash
+virtualenv <name of environment>
+```
+
 4. **Activate Virtual Environment:**
 
 - On macOS/Linux:
-  ```
+  ```bash
   source venv/bin/activate
   ```
 - On Windows:
-  ```
+  ```bash
   .\venv\Scripts\activate
   ```
 
 5. **Install Dependencies:**
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Running the Project
 
