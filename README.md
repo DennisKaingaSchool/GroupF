@@ -1,6 +1,6 @@
 # GroupF Django Project Workflow
 
-# ALWAYS PULL FROM MAIN BRANCH BEFORE YOU START :)
+## ALWAYS PULL FROM MAIN BRANCH BEFORE YOU START :)
 
 ## Setting Up Virtual Environment
 
