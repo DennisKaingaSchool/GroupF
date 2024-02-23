@@ -18,7 +18,6 @@ def members(request):
         "title":"Members"
     }
     return render(request,"polls/members/index.html",context=context)
-    
 
 def elections(request):
     context  ={
