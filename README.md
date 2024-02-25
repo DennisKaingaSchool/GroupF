@@ -2,7 +2,7 @@
 
 ## Checkout our DB diagram
 
-<a target="blank" href="https://dbdiagram.io/e/63cff1d9296d97641d7bc968/65d6fcef783e8c6ca5264f13">Database diagram</a>
+<a target="blank" href="[text](https://dbdiagram.io/e/65d711e65cd04127748d457d/65db7d5b5cd0412774c3ae7b)">Database diagram</a>
 
 ## ALWAYS PULL FROM MAIN BRANCH BEFORE YOU MAKE CHANGES :)
 
