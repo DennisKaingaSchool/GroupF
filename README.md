@@ -2,7 +2,7 @@
 
 ## Checkout our DB diagram
 
-<iframe width="560" height="315" src='https://dbdiagram.io/e/63cff1d9296d97641d7bc968/65d6fcef783e8c6ca5264f13'> </iframe>
+<a target="_blank" href="https://dbdiagram.io/e/63cff1d9296d97641d7bc968/65d6fcef783e8c6ca5264f13">Data base diagram</a>
 
 ## ALWAYS PULL FROM MAIN BRANCH BEFORE YOU START :)
 
