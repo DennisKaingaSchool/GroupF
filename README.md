@@ -1,5 +1,9 @@
 # GroupF Django Project Workflow
 
+## Checkout our DB diagram
+
+<iframe width="560" height="315" src='https://dbdiagram.io/e/63cff1d9296d97641d7bc968/65d6fcef783e8c6ca5264f13'> </iframe>
+
 ## ALWAYS PULL FROM MAIN BRANCH BEFORE YOU START :)
 
 ## Setting Up Virtual Environment
