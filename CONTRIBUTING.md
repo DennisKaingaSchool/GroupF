@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-Welcome to the [Project Name] repository! We're thrilled to have you here. Your contributions help make this project better for everyone. Please take a moment to review the following guidelines before contributing.
+Welcome to the kuraYangu repository! We're thrilled to have you here. Your contributions help make this project better for everyone. Please take a moment to review the following guidelines before contributing.
 
 ## How to Contribute
 
