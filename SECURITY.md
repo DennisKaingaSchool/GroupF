@@ -42,7 +42,7 @@ Thank you for your interest in contributing to our Django project! We take secur
 
 ## Reporting Security Issues
 
-If you discover a security vulnerability in our Django project, please report it to our security team immediately. You can contact us via email at [security@example.com](mailto:security@example.com). Please provide detailed information about the vulnerability and steps to reproduce it so that we can investigate and address it promptly.
+If you discover a security vulnerability in our Django project, please report it to our security team immediately. You can contact us via email at [security@example.com](mailto:bsclmr111322@spu.ac.ke). Please provide detailed information about the vulnerability and steps to reproduce it so that we can investigate and address it promptly.
 
 Thank you for your commitment to security and for helping us maintain a secure environment for our users!
 
