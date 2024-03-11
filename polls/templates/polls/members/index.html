@@ -19,31 +19,43 @@
         Add member
       </button>
     </div>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="team-item rounded">
-          <!-- href="{%static 'polls/lib/animate/animate.min.css'%}" -->
-          <!-- {% load static %} <img src="{% static "images/hi.jpg" %}" alt="Hi!" /> -->
-          <img
-            class="img-fluid"
-            src="{% static 'polls/img/team-1.jpg' %}"
-            alt="hi"
-          />
-          <div class="team-text">
-            <h4 class="mb-0">Doris Jordan</h4>
-            <!-- <p class="text-primary">Landscape Designer</p> -->
-            <div class="team-social d-flex">
-              <a class="btn btn-square rounded-circle me-2" href=""
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a class="btn btn-square rounded-circle me-2" href=""
-                ><i class="fab fa-twitter"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="row g-4 mt-2 card">
+  <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Date of birth</th>
+                <th>Contact</th>
+                <th>Address</th>
+                <th>Campus</th>
+                <th>Course</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for member in members %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ member.member_first_name|add:' '|add:member.member_lastname }}</td>
+                <td>{{ member.member_date_of_birth }}</td>
+                <td>{{ member.member_contact }}</td>
+                <td>{{ member.member_address }}</td>
+                <td>{{ member.member_campus.campus_name }}</td>
+                <td>{{ member.member_course.course_name }}</td>
+            </tr>
+             {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Date of birth</th>
+                <th>Contact</th>
+                <th>Address</th>
+                <th>Campus</th>
+                <th>Course</th>
+            </tr>
+        </tfoot>
+    </table>
   </div>
 </div>
 <!-- Team End -->
@@ -70,53 +82,82 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form
+          action={% url 'member_create' %}
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
           <div class="row mb-4">
             <div class="col">
               <input
+                name="member_first_name"
                 type="text"
                 class="form-control"
                 placeholder="First name"
               />
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Last name" />
+              <input
+                name="member_lastname"
+                type="text"
+                class="form-control"
+                placeholder="Last name"
+              />
             </div>
           </div>
           <div class="row mb-4">
             <div class="col">
               <input
+                name="member_date_of_birth"
                 type="date"
                 class="form-control"
                 placeholder="Date of birth"
               />
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Contact" />
+              <input
+                name="member_contact"
+                type="text"
+                class="form-control"
+                placeholder="Contact"
+              />
             </div>
           </div>
           <div class="row mb-4">
             <div class="col">
-              <input type="text" class="form-control" placeholder="Address" />
+              <input
+                type="text"
+                name="member_address"
+                class="form-control"
+                placeholder="Address"
+              />
             </div>
-            <div class="col">
-              <input type="file" class="form-control" placeholder="Avatar" />
-            </div>
+            <!-- <div class="col">
+              <input
+                name="member_avatar"
+                type="file"                
+                class="form-control"
+                placeholder="Avatar"
+              />
+            </div> -->
           </div>
           <div class="row mb-4">
             <div class="col">
               <select
+                name="member_campus"
                 class="form-select form-select-md mb-3"
                 aria-label=".form-select-sm example"
               >
                 <option selected>Select campus</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                {% for campus in campuses %}
+                <option value="{{campus.id}}">{{campus.campus_name}}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="col">
               <select
+                name="member_course"
                 class="form-select form-select-md mb-3"
                 aria-label=".form-select-lg example"
               >
@@ -128,6 +169,23 @@
             </div>
           </div>
 
+             <div class="row mb-4">
+            <div class="col">
+              <select
+                name="member_rank"
+                class="form-select form-select-md mb-3"
+                aria-label=".form-select-sm example"
+              >
+                <option selected>Select rank</option>
+              
+                <option value="0">Admin</option>
+                <option value="1">User</option>
+              
+              </select>
+            </div>
+          
+          </div>
+
           <div class="modal-footer">
             <button
               type="button"
@@ -136,11 +194,14 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+<script>
+  $('#example').DataTable();
+</script>
 {% endblock content %}

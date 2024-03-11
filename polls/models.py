@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 #ORM-> Object Relationsl Mapper
 
 # Create your models here.
@@ -15,9 +17,10 @@ class Member(models.Model):
     member_date_of_birth = models.DateField()
     member_contact = models.CharField(max_length=15)
     member_address = models.CharField(max_length=100)
-    member_avatar = models.CharField(max_length=200)
     member_campus = models.ForeignKey(Campus,on_delete=models.CASCADE)
     member_course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    member_rank = models.IntegerField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 class ElectoralPosition(models.Model):
     electoral_position_name=models.CharField(max_length=100)
@@ -33,13 +36,15 @@ class Election(models.Model):
 class ElectionMember(models.Model):
     election_member_election=models.ForeignKey(Election,on_delete=models.CASCADE)
     election_member_member=models.ForeignKey(Member,on_delete=models.CASCADE)
-
+   
 class CandidateElection(models.Model):
-    candidate_election_election=models.ForeignKey(Election,on_delete=models.CASCADE)
+    candidate_election_election=models.ForeignKey(Election,on_delete=models.CASCADE,null=True)
     candidate_election_member=models.ForeignKey(Member,on_delete=models.CASCADE)
     candidate_election_electoral_position=models.ForeignKey(ElectoralPosition,on_delete=models.CASCADE)
     candidate_election_party=models.ForeignKey(Party,on_delete=models.CASCADE)
-    candidate_election_member_number_votes=models.IntegerField()
+    candidate_election_member_number_votes=models.IntegerField(default=0,null=True)
+    member_avatar = models.ImageField(upload_to='uploads/')
+
     
 
 

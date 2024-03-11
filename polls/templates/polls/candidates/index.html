@@ -1,0 +1,162 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<!-- <h1>Hi am home</h1>-->
+
+<!-- Members Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div
+      class="text-center mx-auto wow fadeInUp"
+      data-wow-delay="0.1s"
+      style="max-width: 500px"
+    >
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#newMember"
+      >
+      Select candidate
+      </button>
+    </div>
+    <div class="row g-4 mt-3">
+       {% if message %}
+            <p>{{message}}</p>
+            {% endif %}
+            {% for candidate in candidates %}
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="team-item rounded">
+          <!-- href="{%static 'polls/lib/animate/animate.min.css'%}" -->
+          <!-- {% load static %} <img src="{% static "images/hi.jpg" %}" alt="Hi!" /> -->
+          <img
+              style="width: 300px; height: 200px;"
+            class="img-fluid"
+            src={{candidate.member_avatar.url}}
+            alt="hi"
+          />
+         
+          <div class="team-text">
+            <h4 class="mb-0">{{ candidate.candidate_election_member.member_first_name|add:' '|add:candidate.candidate_election_member.member_lastname }}</h4>
+            <!-- <p class="text-primary">Landscape Designer</p> -->
+            <div class="team-social d-flex gap-3">
+              <h5>{{candidate.candidate_election_electoral_position.electoral_position_name}}</h5>
+             
+              <p>{{candidate.candidate_election_party.party_name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Team End -->
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="newMember"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="newMember"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select Candidate</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          action={% url 'candidate_create' %}
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <div class="row mb-4">
+             <div class="col">
+              <select
+                name="candidate_election_member"
+                class="form-select form-select-md mb-3"
+                aria-label=".form-select-lg example"
+              >
+                <option selected>Appoint member</option>
+                {% for member in members %}
+                <option value="{{member.id}}">{{ member.member_first_name|add:' '|add:member.member_lastname }}</option>
+                {% endfor %}
+              </select>
+            </div>
+             <div class="col">
+              <select
+                name="candidate_election_electoral_position"
+                class="form-select form-select-md mb-3"
+                aria-label=".form-select-lg example"
+              >
+                <option selected>Select electoral position</option>
+                {% for position in positions %}
+                <option value="{{position.id}}">{{position.electoral_position_name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col">
+              <select
+                name="candidate_election_party"
+                class="form-select form-select-md mb-3"
+                aria-label=".form-select-lg example"
+              >
+                <option selected>Select party</option>
+                {% for party in parties %}
+                <option value="{{party.id}}">{{party.party_name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+              <div class="col">
+              <input
+                name="member_avatar"
+                type="file"                
+                class="form-control"
+                placeholder="Avatar"
+              />
+              <input
+                name="candidate_election_election"
+                value={{active_election.id}}
+                type="hidden"                
+                class="form-control"
+                placeholder="Avatar"
+              />
+              <input
+                name="candidate_election_member_number_votes"
+                value="0"
+                type="hidden"                
+                class="form-control"
+                placeholder="Avatar"
+              />
+            </div>
+          </div>
+       
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,4 +1,11 @@
-{% load static %}
+{% load static %} {% if user.is_authenticated %}
+<p>L</p>
+<!-- Show content for logged-in users -->
+{% else %}
+<p>N</p>
+<!-- Show content for anonymous users -->
+{% endif %}
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -16,11 +23,14 @@
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
       integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
     <script
       src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
       integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
@@ -44,6 +54,10 @@
     />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css"
       rel="stylesheet"
     />
 
@@ -90,43 +104,40 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
+          {% if user.is_authenticated %}
           <a href="#!" class="nav-item nav-link active">Home</a>
           <a href="/polls/members" class="nav-item nav-link">Members</a>
           <a href="/polls/elections" class="nav-item nav-link">Election</a>
           <a href="/polls/candidates" class="nav-item nav-link">Candidates</a>
+          {% endif %}
         </div>
       </div>
     </nav>
     <!-- Navbar End -->
 
     <!-- Page Header Start -->
+    {% if title %}
     <div
       class="container-fluid page-header py-5 mb-5 wow fadeIn"
       data-wow-delay="0.1s"
     >
       <div class="container text-center py-5">
-        {% if title %}
         <h1 class="display-3 text-white mb-4 animated slideInDown">
           {{title}}
         </h1>
-        {%else%}
-        <h1 class="display-3 text-white mb-4 animated slideInDown">
-          kuraYangu
-        </h1>
-        {%endif%}
 
         <!-- <nav aria-label="breadcrumb animated slideInDown">
-      <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Our Team</li>
-      </ol>
-    </nav> -->
+          <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Our Team</li>
+          </ol>
+        </nav> -->
       </div>
     </div>
+    {%endif%}
     <!-- Page Header End -->
 
     {% block content %}{% endblock %}
-    <script src="" async defer></script>
   </body>
 </html>

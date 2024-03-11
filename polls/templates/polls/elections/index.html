@@ -1,1 +1,99 @@
-{% extends "base.html" %} {% block content %} {% endblock content %}
+{% extends "base.html" %} {% block content %} {% load static %}
+<!-- <h1>Hi am home</h1>-->
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+
+  body {
+    font-size: 13px;
+    font-family: "Noto Sans", sans-serif;
+  }
+
+  table {
+    tbody {
+      tr {
+        th {
+          width: 150px;
+          text-align: center;
+
+          img {
+            border-radius: 50%;
+            margin-bottom: 10px;
+          }
+        }
+
+        td {
+          font-weight: bold;
+          font-size: 12px;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          .details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: normal;
+            color: #dcdfdc;
+            margin-top: auto;
+
+            .time {
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+<!-- Members Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div
+      class="text-center mx-auto wow fadeInUp"
+      data-wow-delay="0.1s"
+      style="max-width: 500px"
+    >
+      <!-- Button trigger modal -->
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col"></th>
+            {% for voter in voters %}
+            <th scope="col">{{forloop.counter}}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for candidate in candidates%}
+          <tr class="mt-3">
+            <th scope="row">
+              <div class="image-part">
+                <img
+                  style="width: 80px; height: 80px"
+                  src="{{ candidate.member_avatar.url }}"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="person-name">
+                {{candidate.candidate_election_member.member_first_name}}
+              </div>
+            </th>
+
+            <td
+              class="bg-primary text-white"
+              colspan="{{ candidate.candidate_election_member_number_votes }}"
+            >
+              <div class="issue-details">
+                {{ candidate.candidate_election_member_number_votes }}
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

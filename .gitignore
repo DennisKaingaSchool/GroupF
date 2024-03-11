@@ -4,3 +4,4 @@ venv/
 *.sqlite*
 */__pycache__
 .env
+media/
