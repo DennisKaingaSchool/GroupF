@@ -15,7 +15,7 @@ def home(request):
     }
     return  render(request,'polls/home.html',context)
 
-@login_required
+# @login_required
 def members(request):
     context={
         'members':Member.objects.all(),#SELECT * FROM members;,
@@ -24,7 +24,7 @@ def members(request):
         # "title":"Members"
     }
     return render(request,"polls/members/index.html",context=context)
-@login_required
+# @login_required
 def candidates(request):
     context={
         'members': Member.objects.exclude(
@@ -38,7 +38,7 @@ def candidates(request):
     }
     return render(request,"polls/candidates/index.html",context=context)
 
-@login_required
+# @login_required
 def candidate_create(request):
     if request.method == 'POST':
         form  = CandidateElectionForm(request.POST,request.FILES)
@@ -53,7 +53,7 @@ def candidate_create(request):
         form  = CandidateElectionForm()
     return redirect(reverse("candidates"))
 
-@login_required
+# @login_required
 def member_create(request):
     if request.method == 'POST':
         member_first_name = request.POST.get('member_first_name')
@@ -67,7 +67,7 @@ def member_create(request):
         campus = Campus.objects.get(id=member_campus)
         course = Course.objects.get(id=member_course)
 
-        hashed_password = make_password(member_first_name)
+        hashed_password = make_password(123)
         user = User.objects.create(username=member_lastname, password=hashed_password)
 
 
@@ -93,7 +93,7 @@ def member_create(request):
 
 def uploadok(request):
     return HttpResponse(' upload successful')
-@login_required
+# @login_required
 def elections(request):
     context  ={
         'candidates':CandidateElection.objects.all(),
@@ -107,8 +107,8 @@ def elections(request):
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+        pwd = request.POST.get('password')
+        user = authenticate(request, username=username, password=pwd)
         print(user)
         if user:
             login(request, user)    
@@ -126,3 +126,13 @@ def user_logout(request):
 
 def login(request):
     return render(request,"polls/login/index.html")
+
+
+def vote(request):
+    candidate_id = request.POST.get('candidate_id')
+    candidate = CandidateElection.objects.get(pk=candidate_id)
+    candidate.candidate_election_member_number_votes+=1
+    if candidate.candidate_election_member_number_votes > Member.objects.all().count():
+        return redirect(reverse("elections"))
+    candidate.save()
+    return redirect(reverse("elections"))

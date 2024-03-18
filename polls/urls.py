@@ -7,6 +7,7 @@ urlpatterns = [
     path("member/create",views.member_create,name="member_create"),
     path("candidates",views.candidates,name="candidates"),
     path("candidate/create",views.candidate_create,name="candidate_create"),
+    path("vote",views.vote,name="cast_vote"),
     path('success/', views.uploadok, name = 'success'),
     path("elections",views.elections,name="elections"),
     path('login/', views.user_login, name='login'),
